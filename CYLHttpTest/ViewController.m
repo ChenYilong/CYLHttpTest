@@ -7,6 +7,9 @@
 //
 
 #import "ViewController.h"
+#import "CYLHttpTool.h"
+#import "CYLHttpTestTool.h"
+#import "CYLHttpTestParam.h"
 
 @interface ViewController ()
 
@@ -14,14 +17,16 @@
 
 @implementation ViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
-}
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (IBAction)requestButtonClicked:(id)sender {
+    
+    CYLHttpTestParam *param = [[CYLHttpTestParam alloc] init];
+    param.hospitalName = @"111";
+    [CYLHttpTestTool operateNetHttpTestWithParam:param success:^(CYLHttpTestResult *result) {
+        NSLog(@"✅✅✅✅✅✅✅%@",result);
+    } failure:^(NSError *error) {
+        NSLog(@"‼️‼️‼️‼️‼️%@",error);
+    }];
 }
 
 @end
